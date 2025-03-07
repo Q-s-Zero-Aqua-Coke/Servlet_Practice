@@ -20,8 +20,33 @@ public class ChatController extends HttpServlet {
 
     @Override
     public void service(ServletRequest req, ServletResponse res) throws ServletException, IOException {
-//        super.service(req, res);
+        super.service(req, res);
         logger.info("서비스! 서비스!");
-        res.getWriter().println("받아라!");
+    }
+
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        // 인코딩 변경
+        req.setCharacterEncoding("UTF-8");
+        resp.setCharacterEncoding("UTF-8");
+        resp.setContentType("text/html;charset=UTF-8");
+
+        resp.getWriter().println("한글!");
+
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        // 인코딩 변경
+        req.setCharacterEncoding("UTF-8");
+        resp.setCharacterEncoding("UTF-8");
+        
+        resp.getWriter().println("한글");
+    }
+
+    @Override
+    public void destroy() {
+        super.destroy();
+        logger.info("파괴");
     }
 }
